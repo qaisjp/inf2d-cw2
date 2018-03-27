@@ -53,6 +53,7 @@
         :effect (and
             (HoldingSomething ?a)
             (HoldingObject ?a ?bg)
+            (not (At ?bg ?l))
         )
     )
 
@@ -60,6 +61,7 @@
         :parameters (?a - bartender ?l - location ?bg - object)
         :precondition (and
             (HoldingObject ?a ?bg)
+            (At ?a ?l)
         )
         :effect (and
             (not (HoldingSomething ?a))
@@ -100,6 +102,7 @@
         :precondition (and
             (HoldingObject ?a ?g)
             (not (ContainsBeer ?g))
+            (At ?a BAR)
         )
         :effect (ContainsBeer ?g)
     )

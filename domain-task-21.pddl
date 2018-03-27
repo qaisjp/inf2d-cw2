@@ -50,6 +50,7 @@
         :effect (and
             (HoldingSomething ?a)
             (HoldingGlass ?a ?g)
+            (not (At ?g ?l))
         )
     )
     
@@ -73,6 +74,7 @@
         :precondition (and
             (HoldingGlass ?a ?g)
             (not (ContainsBeer ?g))
+            (At ?a BAR)
         )
         :effect (ContainsBeer ?g)
     )
