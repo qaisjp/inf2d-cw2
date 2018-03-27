@@ -2,7 +2,7 @@
  ------ Informatics 2D - 2017/18 - Second Assignment - Planning ------
 -----------------------------------------------------------------------
  
- Write your matriculation number here (your name is not needed)
+ Write your matriculation number here (your name is ¬needed)
  Matriculation Number: s1620208
  
 1.1 
@@ -60,25 +60,25 @@ At(c, LB).
 
 Action(PickUp(a, l, g),
 	PRECOND: Agent(a) ∧ Glass(g) ∧ ¬HoldingSomething(a)
-		and At(a, l) and At(g, l)
-	EFFECT: HoldingGlass(a, g) and not At(g, l)
+		∧ At(a, l) ∧ At(g, l)
+	EFFECT: HoldingSomething(a) ∧ HoldingGlass(a, g) ∧ ¬At(g, l)
 )
 
 1.7
 
 Action(HandOver(a, l, g, c),
 	PRECOND: Agent(a) ∧ Location(l) ∧ Glass(g) ∧ Customer(c)
-		∧ HoldingGlass(a, g) ∧ At(a, l) and At(c, l)
-	EFFECT: not HoldingGlass(a, g)) ∧ Served(c)
+		∧ HoldingGlass(a, g) ∧ At(a, l) ∧ At(c, l) ∧ ContainsBeer(g)
+	EFFECT: ¬HoldingGlass(a, g) ∧ ¬HoldingSomething(a) ∧ Served(c)
 
 
 1.8
 
 Action(Pour(a, g),
 	PRECOND:
-		Agent(a) and Glass(g) and
-		At(a, BAR) and
-		not ContainsBeer(g) and HoldingGlass(a, g)
+		Agent(a) ∧ Glass(g) ∧
+		At(a, BAR) ∧
+		¬ContainsBeer(g) ∧ HoldingGlass(a, g)
 	EFFECT: ContainsBeer(g)
 )
 
@@ -87,19 +87,19 @@ Action(Pour(a, g),
 
 Action(Move(a, from, to),
 	PRECOND:
-		Agent(a) and Location(from) and Location(to) and
-		At(a, from) and not (from=to) and Adjacent(from, to)
-	EFFECT: not At(a, from) and At(a, to)
+		Agent(a) ∧ Location(from) ∧ Location(to) ∧
+		At(a, from) ∧ ¬(from=to) ∧ Adjacent(from, to)
+	EFFECT: ¬At(a, from) ∧ At(a, to)
 )
 
 
 1.10
 
 Init(
-	Agent(a) and Glass(G) and Bar(BAR) and Customer(C)
-	and Upper(UF) and Front(UF)
-	and At(a, BAR) and At(G, BAR) and At(C, UF)
-	and not Served(C) and not ContainsBeer(G)
+	Agent(a) ∧ Glass(G) ∧ Bar(BAR) ∧ Customer(C)
+	∧ Upper(UF) ∧ Front(UF)
+	∧ At(a, BAR) ∧ At(G, BAR) ∧ At(C, UF)
+	∧ ¬Served(C) ∧ ¬ContainsBeer(G)
 )
 Goal(Served(C))
 
@@ -113,7 +113,7 @@ Goal(Served(C))
 
 # Stage 1
 ## Goal state:
-	- not Served(C)
+	- ¬Served(C)
 	- HoldingGlass(a, G)
 ## Actions available:
 	- HandOver(a, UF, G, C)
@@ -132,7 +132,7 @@ Goal(Served(C))
 
 # Stage 3
 ## Goal state:
-	- not HoldingGlass(a, G)
+	- ¬HoldingGlass(a, G)
 ## Actions available:
 	- PickUp(a, BAR, G)
 ## Executed:
