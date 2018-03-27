@@ -1,0 +1,41 @@
+-----------------------------------------------------------------------
+ ------ Informatics 2D - 2017/18 - Second Assignment - Planning ------
+-----------------------------------------------------------------------
+ 
+ Write your matriculation number here (your name is not needed)
+ Matriculation Number: s_______
+ 
+1.1 
+
+
+1.2
+
+
+1.3
+
+
+1.4
+
+
+1.5
+
+
+1.6
+
+
+1.7
+
+
+1.8
+
+
+1.9
+
+
+1.10
+
+
+
+--------------------
+Answers to parts 2 and 3 should be included in the appropriate
+*-template.pddl files.

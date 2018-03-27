@@ -1,0 +1,154 @@
+-----------------------------------------------------------------------
+ ------ Informatics 2D - 2017/18 - Second Assignment - Planning ------
+-----------------------------------------------------------------------
+ 
+ Write your matriculation number here (your name is not needed)
+ Matriculation Number: s1620208
+ 
+1.1 
+Adjacent(x, y)
+
+
+1.2
+
+Location(l)
+At(x, Location)
+
+
+1.3
+
+Glass(g).
+ContainsBeer(g).
+
+
+1.4
+
+Customer(c).
+Served(c)
+
+
+1.5
+
+Adjacent(BAR, UF).
+Adjacent(UF, UB).
+Adjacent(UB, MB).
+Adjacent(MB, LB).
+Adjacent(LB, LF).
+Adjacent(LF, MF).
+Adjacent(MF, UF).
+
+Adjacent(UF BAR).
+Adjacent(UB UF).
+Adjacent(MB UB).
+Adjacent(LB MB).
+Adjacent(LF LB).
+Adjacent(MF LF).
+Adjacent(UF MF).
+
+Agent(a).
+Bar(b).
+At(a, b).
+
+Glass(g).
+At(g, b).
+
+Customer(c).
+At(c, LB).
+
+
+1.6
+
+Action(PickUp(a, l, g),
+	PRECOND: Agent(a) ∧ Glass(g) ∧ ¬HoldingSomething(a)
+		and At(a, l) and At(g, l)
+	EFFECT: HoldingGlass(a, g) and not At(g, l)
+)
+
+1.7
+
+Action(HandOver(a, l, g, c),
+	PRECOND: Agent(a) ∧ Location(l) ∧ Glass(g) ∧ Customer(c)
+		∧ HoldingGlass(a, g) ∧ At(a, l) and At(c, l)
+	EFFECT: not HoldingGlass(a, g)) ∧ Served(c)
+
+
+1.8
+
+Action(Pour(a, g),
+	PRECOND:
+		Agent(a) and Glass(g) and
+		At(a, BAR) and
+		not ContainsBeer(g) and HoldingGlass(a, g)
+	EFFECT: ContainsBeer(g)
+)
+
+
+1.9
+
+Action(Move(a, from, to),
+	PRECOND:
+		Agent(a) and Location(from) and Location(to) and
+		At(a, from) and not (from=to) and Adjacent(from, to)
+	EFFECT: not At(a, from) and At(a, to)
+)
+
+
+1.10
+
+Init(
+	Agent(a) and Glass(G) and Bar(BAR) and Customer(C)
+	and Upper(UF) and Front(UF)
+	and At(a, BAR) and At(G, BAR) and At(C, UF)
+	and not Served(C) and not ContainsBeer(G)
+)
+Goal(Served(C))
+
+
+---
+# Stage 0
+## Current state:
+	- Served(C)
+	- At(a, UF)
+	- At(C, UF)
+
+# Stage 1
+## Goal state:
+	- not Served(C)
+	- HoldingGlass(a, G)
+## Actions available:
+	- HandOver(a, UF, G, C)
+## Executed:
+	- HandOver(a, UF, G, C)
+
+# Stage 2
+## Goal state: 
+	- At(a, BAR)
+## Actions available:
+	- Move(a, BAR, UF)
+	- Move(a, UB, UF)
+	- Move(a, MF, UF)
+## Executed:
+	- Move(a, BAR, UF)
+
+# Stage 3
+## Goal state:
+	- not HoldingGlass(a, G)
+## Actions available:
+	- PickUp(a, BAR, G)
+## Executed:
+	- PickUp(a, BAR, G)
+
+
+Final plan:
+
+- PickUp(a, BAR, G)
+- Move(a, BAR, UF)
+- HandOver(a, UF, G, C)
+
+
+
+
+
+--------------------
+Answers to parts 2 and 3 should be included in the appropriate
+*-template.pddl files.
