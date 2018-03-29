@@ -6,6 +6,13 @@
  Matriculation Number: s1620208
  
 1.1 
+Location(BAR)
+Location(UF)
+Location(UB)
+Location(MB)
+Location(LB)
+Location(LF)
+Location(MF)
 Adjacent(x, y)
 
 
@@ -37,16 +44,16 @@ Adjacent(LB, LF).
 Adjacent(LF, MF).
 Adjacent(MF, UF).
 
-Adjacent(UF BAR).
-Adjacent(UB UF).
-Adjacent(MB UB).
-Adjacent(LB MB).
-Adjacent(LF LB).
-Adjacent(MF LF).
-Adjacent(UF MF).
+Adjacent(UF, BAR).
+Adjacent(UB, UF).
+Adjacent(MB, UB).
+Adjacent(LB, MB).
+Adjacent(LF, LB).
+Adjacent(MF, LF).
+Adjacent(UF, MF).
 
 Agent(a).
-Bar(b).
+Location(b).
 At(a, b).
 
 Glass(g).
@@ -96,7 +103,7 @@ Action(Move(a, from, to),
 1.10
 
 Init(
-	Agent(a) ∧ Glass(G) ∧ Bar(BAR) ∧ Customer(C)
+	Agent(a) ∧ Glass(G) ∧ Location(BAR) ∧ Customer(C)
 	∧ Upper(UF) ∧ Front(UF)
 	∧ At(a, BAR) ∧ At(G, BAR) ∧ At(C, UF)
 	∧ ¬Served(C) ∧ ¬ContainsBeer(G)
